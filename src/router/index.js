@@ -1,9 +1,9 @@
 /*
- * Description:
+ * Description: 路由配置
  * Author:LinJ
  * Date:2021-11-06 14:00:49
  * LastEditors:LinJ
- * LastEditTime:2021-11-06 23:57:35
+ * LastEditTime:2021-11-07 00:26:20
  */
 import Vue from 'vue';
 import VueRouter from 'vue-router';

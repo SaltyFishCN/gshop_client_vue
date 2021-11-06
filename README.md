@@ -34,3 +34,8 @@ npm run lint
         - mini-ui (尝试使用element ui)组件库构建页面
         - vue-lazyload 图片懒加载
 5. 问题记录
+    - 自建vue代码片段节省vue文件的创建。
+    - eslint 换行符报错 "Expected linebreaks to be 'LF' but found 'CRLF'"。    
+    添加新的规则:
+    ```"linebreak-style": ["error", "windows"]```
+        
