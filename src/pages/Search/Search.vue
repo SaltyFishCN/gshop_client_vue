@@ -3,21 +3,29 @@
  * Author:LinJ
  * Date:2021-11-06 22:16:04
  * LastEditors:LinJ
- * LastEditTime:2021-11-07 00:25:29
+ * LastEditTime:2021-11-07 23:42:46
 -->
 <template>
-  <div>
-    Search
+  <div class="search">
+    <HeaderTop title="搜索" />
+    <form class="search_form" action="#">
+      <input type="search" name="search" placeholder="请输入商家或美食名称" class="search_input">
+      <input type="submit" name="submit" class="search_submit">
+    </form>
   </div>
 </template>
 
 <script>
+import HeaderTop from 'components/HeaderTop/HeaderTop.vue';
+
 export default {
   name: 'Search',
   // 父组件传入的数据
   props: {},
   // 局部注册的组件
-  components: {},
+  components: {
+    HeaderTop,
+  },
   // 组件状态值
   data() {
     return {};
@@ -39,5 +47,32 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
+@import '~stylus/mixins.styl';
+.search  //搜索
+  width 100%
+  .search_form
+    clearFix()
+    margin-top 2.8125rem
+    background-color #fff
+    padding .75rem .5rem
+    input
+      height 2.1875rem
+      padding 0 .25rem
+      border-radius 2px
+      font-weight bold
+      outline none
+      &.search_input
+        float left
+        width 79%
+        border 4px solid #f2f2f2
+        font-size .875rem
+        color #333
+        background-color #f2f2f2
+      &.search_submit
+        float right
+        width 18%
+        border 4px solid #02a774
+        font-size 1rem
+        color #fff
+        background-color #02a774
 </style>

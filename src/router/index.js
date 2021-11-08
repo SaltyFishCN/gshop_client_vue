@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-06 14:00:49
  * LastEditors:LinJ
- * LastEditTime:2021-11-07 00:26:20
+ * LastEditTime:2021-11-07 21:31:36
  */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -17,6 +17,12 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
+    name: 'Home',
+    // 将首页重定向到/msite
+    redirect: '/msite',
+  },
+  {
+    path: '/msite',
     name: 'Msite',
     component: Msite,
   },

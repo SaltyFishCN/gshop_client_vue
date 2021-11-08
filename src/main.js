@@ -3,16 +3,23 @@
  * Author:LinJ
  * Date:2021-11-06 14:03:12
  * LastEditors:LinJ
- * LastEditTime:2021-11-06 22:33:49
+ * LastEditTime:2021-11-07 23:00:03
 */
 
 // 引入插件
 import Vue from 'vue';
+// fastClick 解决移动端300ms延迟问题
+import fastClick from 'fastclick';
+
 import App from './App.vue';
 import router from './router';
 import store from './store';
+// 引入全局样式文件
+import './common/css/reset.css';
 
 Vue.config.productionTip = false;
+// 引入fastClick解决300ms延迟问题
+fastClick.attach(document.body);
 
 new Vue({
   // 使用vue-router
