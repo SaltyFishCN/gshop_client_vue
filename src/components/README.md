@@ -13,3 +13,9 @@
     - shop
     - stars
   - ShopList.vue 顶部导航组件
+- Login 登录组件
+  - LoginMessage
+    - LoginMessage.vue 短信登录
+  - LoginPwd
+    - LoginPwd.vue 密码登录
+  - Login.styl 登录组件公用样式

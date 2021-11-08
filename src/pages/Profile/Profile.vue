@@ -3,14 +3,14 @@
  * Author:LinJ
  * Date:2021-11-06 22:16:26
  * LastEditors:LinJ
- * LastEditTime:2021-11-07 23:43:04
+ * LastEditTime:2021-11-08 20:13:05
 -->
 
 <template>
   <div class="profile">
     <HeaderTop title="我的" />
     <section class="profile-number">
-      <a href="javascript:" class="profile-link">
+      <router-link to='/login' href="javascript:" class="profile-link">
         <div class="profile_image">
           <i class="iconfont icon-person"></i>
         </div>
@@ -26,7 +26,7 @@
         <span class="arrow">
           <i class="iconfont icon-jiantou1"></i>
         </span>
-      </a>
+      </router-link>
     </section>
     <section class="profile_info_data border-1px">
       <ul class="info_data_list">
@@ -134,8 +134,9 @@ export default {
 @import '~stylus/mixins.styl';
 .profile //我的
   width 100%
+  overflow hidden
   .profile-number
-    margin-top 2.84375rem
+    margin-top 2.875rem
     .profile-link
       clearFix()
       position relative

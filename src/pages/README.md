@@ -8,4 +8,6 @@
   - Order.vue 订单组件
 - Profile 个人组件文件夹
   - Profile.vue 个人组件
+- Login 登录组件
+  - Login.vue
   

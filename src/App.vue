@@ -3,12 +3,12 @@
  * Author:LinJ
  * Date:2021-11-07 17:28:31
  * LastEditors:LinJ
- * LastEditTime:2021-11-07 21:54:56
+ * LastEditTime:2021-11-08 20:23:46
 -->
 <template>
   <div id="app">
     <router-view />
-    <FooterGuide />
+    <FooterGuide v-show="$route.meta.isShowFooter" />
   </div>
 </template>
 
