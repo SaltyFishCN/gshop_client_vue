@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-07 00:08:38
  * LastEditors:LinJ
- * LastEditTime:2021-11-07 00:08:38
+ * LastEditTime:2021-11-10 00:32:15
  */
 module.exports = {
   root: true,
@@ -22,5 +22,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // 换行规则
     'linebreak-style': ['error', 'windows'],
+    // 忽视驼峰命名
+    'camelcase': 0
   },
 };
