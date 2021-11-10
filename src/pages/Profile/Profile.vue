@@ -3,24 +3,30 @@
  * Author:LinJ
  * Date:2021-11-06 22:16:26
  * LastEditors:LinJ
- * LastEditTime:2021-11-08 20:13:05
+ * LastEditTime:2021-11-10 21:10:34
 -->
 
 <template>
   <div class="profile">
     <HeaderTop title="我的" />
     <section class="profile-number">
-      <router-link to='/login' href="javascript:" class="profile-link">
+      <router-link
+      :to="userInfo.is_active ? '/userinfo':'/login'"
+      href="javascript:"
+      class="profile-link"
+      >
         <div class="profile_image">
           <i class="iconfont icon-person"></i>
         </div>
         <div class="user-info">
-          <p class="user-info-top">登录/注册</p>
+          <p class="user-info-top">{{ userInfo.username || '登录/注册'}}</p>
           <p>
             <span class="user-icon">
               <i class="iconfont icon-shouji icon-mobile"></i>
             </span>
-            <span class="icon-mobile-number">暂无绑定手机号</span>
+            <span class="icon-mobile-number">
+              {{ (userInfo.is_mobile_valid && userInfo.mobile) || '暂无绑定手机号'}}
+            </span>
           </p>
         </div>
         <span class="arrow">
@@ -31,22 +37,22 @@
     <section class="profile_info_data border-1px">
       <ul class="info_data_list">
         <a href="javascript:" class="info_data_link">
-          <span class="info_data_top"><span>0.00</span>元</span>
+          <span class="info_data_top"><span>{{userInfo.balance || '0.00'}}</span>元</span>
           <span class="info_data_bottom">我的余额</span>
         </a>
         <a href="javascript:" class="info_data_link">
-          <span class="info_data_top"><span>0</span>个</span>
+          <span class="info_data_top"><span>{{userInfo.gift_amount || 0}}</span>个</span>
           <span class="info_data_bottom">我的优惠</span>
         </a>
         <a href="javascript:" class="info_data_link">
-          <span class="info_data_top"><span>0</span>分</span>
+          <span class="info_data_top"><span>{{userInfo.point || 0}}</span>分</span>
           <span class="info_data_bottom">我的积分</span>
         </a>
       </ul>
     </section>
     <section class="profile_my_order border-1px">
       <!-- 我的订单 -->
-      <a href='javascript:' class="my_order">
+      <router-link to="/order" href='javascript:' class="my_order">
         <span>
           <i class="iconfont icon-order-s"></i>
         </span>
@@ -56,7 +62,7 @@
             <i class="iconfont icon-jiantou1"></i>
           </span>
         </div>
-      </a>
+      </router-link>
       <!-- 积分商城 -->
       <a href='javascript:' class="my_order">
         <span>
@@ -96,11 +102,27 @@
         </div>
       </a>
     </section>
+    <section class="profile_my_order border-1px">
+      <el-button
+      type="danger"
+      style="width: 100%"
+      v-if="userInfo.is_active"
+      @click="logout">
+      退出登陆</el-button>
+    </section>
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
+import { mapState } from 'vuex';
+import { Button, Message, MessageBox } from 'element-ui';
 import HeaderTop from 'components/HeaderTop/HeaderTop.vue';
+
+Vue.use(Button);
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$confirm = MessageBox.confirm;
+Vue.prototype.$message = Message;
 
 export default {
   name: 'Profile',
@@ -115,21 +137,38 @@ export default {
     return {};
   },
   // 计算属性
-  computed: {},
+  computed: {
+    ...mapState(['userInfo']),
+  },
   // 组件方法
-  methods: {},
-  // 生命周期钩子，没用的可以删除
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  // 仅在keep-alive下有效
-  activated() {},
-  deactivated() {},
+  methods: {
+    logout() {
+      // 弹窗是否确认退出
+      this.$confirm('是否确认登出 ?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        customClass: 'messageBox',
+        type: 'info',
+      }).then(() => {
+        // 通知vuex进行登出
+        this.$store.dispatch('logout');
+        console.log('log out');
+        this.$message({
+          type: 'success',
+          message: '登出成功!',
+        });
+      }).catch(() => {
+        console.log('cancel');
+      });
+    },
+  },
 };
 </script>
 
+<style lang="stylus">
+.messageBox
+  width 18.75rem
+</style>
 <style lang="stylus" scoped>
 @import '~stylus/mixins.styl';
 .profile //我的

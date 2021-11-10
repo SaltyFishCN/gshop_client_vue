@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-06 22:15:54
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 17:01:04
+ * LastEditTime:2021-11-10 21:21:12
 -->
 
 <template>
@@ -17,9 +17,12 @@
       </template>
       <!-- 用户信息 -->
       <template #right>
-        <span class="header_login">
-          <span class="header_login_text">登录|注册</span>
-        </span>
+        <router-link
+        :to="userInfo.is_active ? '/profile' : '/login'"
+        class="header_login"
+        >
+          <span class="header_login_text">{{ userInfo.is_active ? '我的' : '登录|注册'}}</span>
+        </router-link>
       </template>
     </HeaderTop>
     <div class="msite-wrapper">
@@ -59,7 +62,7 @@ export default {
   // 计算属性
   computed: {
     // this.address = this.$store.state.address
-    ...mapState(['address', 'categorys', 'shops']),
+    ...mapState(['address', 'categorys', 'shops', 'userInfo']),
   },
   // 组件方法
   methods: {
@@ -69,7 +72,6 @@ export default {
   },
   // 生命周期钩子，没用的可以删除
   mounted() {
-    console.log('msite mounted');
     // 一旦完成界面更新, 立即调用(此条语句要写在数据更新之后)
     this.$nextTick(() => {
       this.scroll = new BScroll('.msite-wrapper', {

@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-07 00:08:38
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 00:32:15
+ * LastEditTime:2021-11-10 20:46:07
  */
 module.exports = {
   root: true,
@@ -23,6 +23,7 @@ module.exports = {
     // 换行规则
     'linebreak-style': ['error', 'windows'],
     // 忽视驼峰命名
-    camelcase: 0,
+    'camelcase': 0,
+    'no-param-reassign': 0,
   },
 };

@@ -2,6 +2,8 @@
 
 首先要明确vuex的整体结构，有哪些state需要通过vuex来做统一管理
 
+确定state => mutation_type => mutation => action  
+
 - state.js 状态对象
   - latitude: float 纬度 ```navigator.geolocation.getCurrentPosition```
   - longtitude: float 经度

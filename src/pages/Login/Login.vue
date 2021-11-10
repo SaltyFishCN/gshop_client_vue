@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-08 19:34:47
  * LastEditors:LinJ
- * LastEditTime:2021-11-09 02:36:49
+ * LastEditTime:2021-11-10 20:23:47
 -->
 
 <template>
@@ -104,9 +104,8 @@ export default {
             this.showDialog('验证码必须是6位数字！');
             return;
           }
-          // 一个promise api接口，后台验证数据准确性，返回是否登录成功
-          console.log(phone, code);
-          loginResult = await Promise.resolve({ code: 1 });
+          // 一个promise api接口，后台验证数据准确性，登录成功则返回用户信息,失败会返回失败信息
+          loginResult = await Promise.resolve({ status: 1, phone, code });
           break;
         }
         case 'LoginPwd':
@@ -129,17 +128,42 @@ export default {
             this.showDialog('验证码不能为空！');
             return;
           }
-          // 一个promise api接口，后台验证数据准确性，返回是否登录成功
-          loginResult = await Promise.resolve({ code: 1 });
+          // 一个promise api接口，后台验证数据准确性，登录成功则返回用户信息,失败会返回失败信息
+          loginResult = await Promise.resolve({
+            status: 1,
+            name,
+            pwd,
+            captcha,
+          });
           break;
         }
         default:
           throw new Error('发生错误');
       }
-      if (loginResult.code) {
+      if (loginResult.status) {
         // 登录成功
-        console.log('login success');
+        // 假的
+        const userInfo = {
+          username: 'testUser',
+          user_id: 2,
+          id: 2,
+          point: 0,
+          mobile: '01234567890',
+          is_mobile_valid: true,
+          is_email_valid: false,
+          is_active: 1,
+          gift_amount: 3,
+          email: '',
+          delivery_card_expire_days: 0,
+          current_invoice_id: 0,
+          current_address_id: 0,
+          brand_member_new: 0,
+          balance: 3.33,
+          avatar: '/img/default/default.jpg',
+          __v: 0,
+        };
         // 通过vuex记录登录信息
+        this.$store.dispatch('saveUserInfo', userInfo);
         // 跳转到 profile页面
         this.$router.replace('/profile');
       } else {

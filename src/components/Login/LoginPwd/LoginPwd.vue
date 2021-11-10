@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-08 22:57:38
  * LastEditors:LinJ
- * LastEditTime:2021-11-09 02:29:45
+ * LastEditTime:2021-11-10 19:48:26
 -->
 <template>
   <div>
@@ -15,7 +15,7 @@
         <input type="password" maxlength="8" placeholder="密码" v-model="pwd">
       </section>
       <section class="login_message">
-        <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
+        <input type="text" maxlength="4" placeholder="验证码" v-model="captcha">
         <img
         class="get_verification"
         :src="captchaUrl"

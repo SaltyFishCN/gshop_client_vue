@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 11:41:01
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 15:42:38
+ * LastEditTime:2021-11-10 21:11:36
  */
 
 import {
@@ -27,8 +27,8 @@ export default {
   [RECEIVE_ADDRESS](state, { address }) { state.address = address; },
   [RECEIVE_CATEGORYS](state, { categorys }) { state.categorys = categorys; },
   [RECEIVE_SHOPS](state, { shops }) { state.shops = shops; },
-  [RECEIVE_USER_INFO](state, { useInfo }) { state.useInfo = useInfo; },
-  [RESET_USER_INFO](state) { state.useInfo = {}; },
+  [RECEIVE_USER_INFO](state, { userInfo }) { state.userInfo = userInfo; },
+  [RESET_USER_INFO](state) { state.userInfo = {}; },
   [RECEIVE_SHOP_INFO](state, { shopInfo }) { state.shopInfo = shopInfo; },
   [RECEIVE_MENU](state, { menu }) { state.menu = menu; },
   [RECEIVE_RATINGS](state, { ratings }) { state.ratings = ratings; },

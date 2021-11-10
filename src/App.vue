@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-07 17:28:31
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 14:33:21
+ * LastEditTime:2021-11-10 21:53:09
 -->
 <template>
   <div id="app">
@@ -33,11 +33,14 @@ export default {
   },
   methods: {
     // 映射， this.actionType = this.$store.dispatch(actionType)
+    // ...mapActions(['getAddress', 'getUserInfo']),
     ...mapActions(['getAddress']),
   },
   mounted() {
     // 当页面挂载的时候就要获取地址信息
     this.getAddress();
+    // 还需要获取用户信息，需要后台api
+    // this.getUserInfo();
   },
 };
 </script>

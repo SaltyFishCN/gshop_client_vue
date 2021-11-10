@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 11:45:27
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 17:19:23
+ * LastEditTime:2021-11-10 21:52:37
  */
 
 import {
@@ -20,8 +20,8 @@ import {
   RECEIVE_ADDRESS,
   RECEIVE_CATEGORYS,
   RECEIVE_SHOPS,
-  // RECEIVE_USER_INFO,
-  // RESET_USER_INFO,
+  RECEIVE_USER_INFO,
+  RESET_USER_INFO,
   // RECEIVE_SHOP_INFO,
   // RECEIVE_MENU,
   // RECEIVE_RATINGS,
@@ -59,5 +59,20 @@ export default {
     const { geohash } = state.address;
     const searchShops = await reqSearchShop(geohash, keyword);
     commit(RECEIVE_SEARCH_SHOPS, { searchShops });
+  },
+  // 记录用户信息
+  saveUserInfo({ commit }, userInfo) {
+    commit(RECEIVE_USER_INFO, { userInfo });
+  },
+  // 向后台申请用预留的用户信息
+  // getUserInfo({ commit }) {
+  // userInfo = await 后台接口，返回预留的登录信息
+  // 前台将用户信息存到vuex中
+  // commit(RECEIVE_USER_INFO, { userInfo });
+  // },
+  logout({ commit }) {
+    // 这里需要一个后台api接口，通知退出登录
+    // 它应该是一个异步的，当后端返回登出结果时，vuex对用户数据进行清空
+    commit(RESET_USER_INFO);
   },
 };

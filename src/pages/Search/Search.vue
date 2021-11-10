@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-06 22:16:04
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 17:42:09
+ * LastEditTime:2021-11-10 19:06:09
 -->
 <template>
   <div class="search">
@@ -17,11 +17,16 @@
       v-model="keyword">
       <input type="submit" name="submit" class="search_submit">
     </form>
+    <section class="search_res_wrapper">
+
+    </section>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex';
+import BScroll from 'better-scroll';
+
 import HeaderTop from 'components/HeaderTop/HeaderTop.vue';
 
 export default {
@@ -53,8 +58,13 @@ export default {
     },
   },
   // 生命周期钩子，没用的可以删除
-  mounted() {},
-  beforeUpdate() {},
+  mounted() {
+    this.$nextTick(() => {
+      this.scroll = new BScroll('.search_res_wrapper', {
+        click: true,
+      });
+    });
+  },
   updated() {},
   beforeDestroy() {},
   destroyed() {},
@@ -93,4 +103,9 @@ export default {
         font-size 1rem
         color #fff
         background-color #02a774
+  .search_res_wrapper
+    position fixed
+    top 3.125rem
+    bottom 3.125rem
+    width 100%
 </style>

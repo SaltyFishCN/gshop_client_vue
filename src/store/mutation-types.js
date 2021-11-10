@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 11:53:47
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 15:43:12
+ * LastEditTime:2021-11-10 19:29:51
  */
 export const RECEIVE_COORDS = 'receive_coords'; // 获取当前定位经纬度信息
 export const RECEIVE_ADDRESS = 'receive_address'; // 接收地址
