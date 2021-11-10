@@ -23,6 +23,6 @@ module.exports = {
     // 换行规则
     'linebreak-style': ['error', 'windows'],
     // 忽视驼峰命名
-    'camelcase': 0
+    camelcase: 0,
   },
 };

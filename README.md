@@ -43,6 +43,7 @@
     - 原视频后台接口过期，无法获取后台json数据 => 顺藤摸瓜找到视频中后台源码所用的接口。[地址](https://github.com/bailicangdu/node-elm)
     - 用户注册登录需要后台接口支持，暂时无法完成，故使用promise.resolve直接决议为成功_(:з」∠)_。
     - 根据element-ui 官方文档配置按需加载
+    - fastclick插件报错 Unable to preventDefault inside passive event listener due to target being treated as passive. 不影响代码实现，但是不好看。 => 在reset.css中应用 CSS 属性 touch-action: none; 这样任何触摸事件都不会产生默认行为，但是 touch 事件照样触发。[原文链接](https://segmentfault.com/a/1190000008512184)
 6. 思考
     - 登录页面的两种登录方式用动态组件的方式进行拆分会不会更好一点
       - 但是点击提交的时候就需要去读取子组件的数据 => 已实现，感觉可读性增加了

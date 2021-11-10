@@ -3,19 +3,25 @@
  * Author:LinJ
  * Date:2021-11-06 22:16:04
  * LastEditors:LinJ
- * LastEditTime:2021-11-07 23:42:46
+ * LastEditTime:2021-11-10 17:42:09
 -->
 <template>
   <div class="search">
     <HeaderTop title="搜索" />
-    <form class="search_form" action="#">
-      <input type="search" name="search" placeholder="请输入商家或美食名称" class="search_input">
+    <form class="search_form" @submit.prevent="search">
+      <input
+      type="search"
+      name="search"
+      placeholder="请输入商家或美食名称"
+      class="search_input"
+      v-model="keyword">
       <input type="submit" name="submit" class="search_submit">
     </form>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 import HeaderTop from 'components/HeaderTop/HeaderTop.vue';
 
 export default {
@@ -28,12 +34,24 @@ export default {
   },
   // 组件状态值
   data() {
-    return {};
+    return {
+      keyword: '',
+    };
   },
   // 计算属性
-  computed: {},
+  computed: {
+    ...mapState(['searchShops']),
+  },
   // 组件方法
-  methods: {},
+  methods: {
+    ...mapActions(['getSearchShops']),
+    search() {
+      const keyword = this.keyword.trim();
+      if (keyword) {
+        this.getSearchShops(keyword);
+      }
+    },
+  },
   // 生命周期钩子，没用的可以删除
   mounted() {},
   beforeUpdate() {},

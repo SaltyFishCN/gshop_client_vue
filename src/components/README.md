@@ -7,11 +7,11 @@
 - Nav 顶部导航文件夹
   - images 图片文件夹
     - nav
+    - msite_back.svg 没有数据时占位图片
   - Nav.vue 顶部导航组件
 - ShopList 顶部导航文件夹
   - images 图片文件夹
-    - shop
-    - stars
+    - shop_back.svg 占位图片
   - ShopList.vue 顶部导航组件
 - Login 登录组件
   - LoginMessage
@@ -19,3 +19,7 @@
   - LoginPwd
     - LoginPwd.vue 密码登录
   - Login.styl 登录组件公用样式
+- Star
+  - images 图片文件夹
+    - stars
+  - Star.vue 评价中的星星的组件
