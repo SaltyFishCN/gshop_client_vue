@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-06 14:00:49
  * LastEditors:LinJ
- * LastEditTime:2021-11-08 20:19:03
+ * LastEditTime:2021-11-11 12:03:57
  */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -12,6 +12,7 @@ import Order from 'pages/Order/Order.vue';
 import Profile from 'pages/Profile/Profile.vue';
 import Search from 'pages/Search/Search.vue';
 import Login from 'pages/Login/Login.vue';
+import Shop from 'pages/Shop/Shop.vue';
 
 Vue.use(VueRouter);
 
@@ -61,6 +62,14 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
+    meta: {
+      isShowFooter: false,
+    },
+  },
+  {
+    path: '/shop/:id',
+    name: 'Shop',
+    component: Shop,
     meta: {
       isShowFooter: false,
     },

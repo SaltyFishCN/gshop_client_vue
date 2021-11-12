@@ -30,6 +30,7 @@
      - vue-awesome-swiper 实现swiper
      - better-scroll 优化滚动效果
      - element ui 组件库
+     - mock.js 在后台接口失效的情况下，模拟后台数据
      - vue-lazyload 图片懒加载
      - stylus CSS预处理器
      - eslint 代码格式规范，使用规则eslint-config-airbnb
@@ -45,11 +46,16 @@
     - 根据element-ui 官方文档配置按需加载
     - fastclick插件报错 Unable to preventDefault inside passive event listener due to target being treated as passive. 不影响代码实现，但是不好看。 => 在reset.css中应用 CSS 属性 touch-action: none; 这样任何触摸事件都不会产生默认行为，但是 touch 事件照样触发。[原文链接](https://segmentfault.com/a/1190000008512184)
     - 尝试修改element-ui的 messageBox样式，无法在scoped style下修改。=> 另外添加一个不带scoped的style，在其中进行修改
+    - 新问题，由于设置了```touch-action: none;```，fastclick虽然不报错了，但是导致移动端触摸滚动失效，得不偿失。查阅MDN中关于touce-action的相关资料后发现可以设置为 manipulation(浏览器只允许进行滚动和持续缩放操作)，而且兼容性尚可。
 6. 思考
     - 登录页面的两种登录方式用动态组件的方式进行拆分会不会更好一点
       - 但是点击提交的时候就需要去读取子组件的数据 => 已实现，感觉可读性增加了
     - 在没有明确好vuex的情况下敲代码比较没有思路，应该先规定好有哪些数据需要通过vuex来进行统一管理再开始编码会比较顺利。 编码前的设计阶段还是比较重要的。
+    - 在search/msite点击商家=> 通过id跳转到商家组件，此时向后台申请商家信息的相应数据并存入vuex中
+    - 商家页面的组件切换，虽然视频采用路由切换，但个人不希望url地址发生变化，而且只有1级跳转，所以采用动态组件的方式实现。
 7. 未完成
     - 个人中心页面
     - 登录登出需要后台接口支持，现在只是模拟
     - 自动登录(保持登录状态) 后台依赖session/cookie保留登录状态，前台app加载时申请获取登录信息
+8. 优化
+    - 尝试使用异步组件```'my-component': () => import('./my-async-component')```在需要的时候再引入

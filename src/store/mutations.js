@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 11:41:01
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 21:11:36
+ * LastEditTime:2021-11-11 12:35:02
  */
 
 import {
@@ -13,10 +13,10 @@ import {
   RECEIVE_SHOPS,
   RECEIVE_USER_INFO,
   RESET_USER_INFO,
-  RECEIVE_SHOP_INFO,
-  RECEIVE_MENU,
-  RECEIVE_RATINGS,
   RECEIVE_SEARCH_SHOPS,
+  // RECEIVE_SHOP_INFO,
+  // RECEIVE_MENU,
+  // RECEIVE_RATINGS,
 } from './mutation-types';
 // 通过action调用时传递的是打包后的数据
 export default {
@@ -29,8 +29,8 @@ export default {
   [RECEIVE_SHOPS](state, { shops }) { state.shops = shops; },
   [RECEIVE_USER_INFO](state, { userInfo }) { state.userInfo = userInfo; },
   [RESET_USER_INFO](state) { state.userInfo = {}; },
-  [RECEIVE_SHOP_INFO](state, { shopInfo }) { state.shopInfo = shopInfo; },
-  [RECEIVE_MENU](state, { menu }) { state.menu = menu; },
-  [RECEIVE_RATINGS](state, { ratings }) { state.ratings = ratings; },
   [RECEIVE_SEARCH_SHOPS](state, { searchShops }) { state.searchShops = searchShops; },
+  // [RECEIVE_SHOP_INFO](state, { shopInfo }) { state.shopInfo = shopInfo; },
+  // [RECEIVE_MENU](state, { menu }) { state.menu = menu; },
+  // [RECEIVE_RATINGS](state, { ratings }) { state.ratings = ratings; },
 };

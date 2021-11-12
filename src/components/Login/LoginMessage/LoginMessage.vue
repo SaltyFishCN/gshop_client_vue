@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-08 22:57:33
  * LastEditors:LinJ
- * LastEditTime:2021-11-09 02:30:49
+ * LastEditTime:2021-11-11 12:10:20
 -->
 <template>
   <div>
@@ -28,8 +28,6 @@
 <script>
 export default {
   name: 'LoginMessage',
-  // 父组件传入的数据
-  props: {},
   // 组件状态值
   data() {
     return {

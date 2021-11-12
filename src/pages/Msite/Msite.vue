@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-06 22:15:54
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 21:21:12
+ * LastEditTime:2021-11-12 20:02:14
 -->
 
 <template>
@@ -54,10 +54,6 @@ export default {
     HeaderTop,
     Nav,
     ShopList,
-  },
-  // 组件状态值
-  data() {
-    return {};
   },
   // 计算属性
   computed: {

@@ -10,4 +10,12 @@
   - Profile.vue 个人组件
 - Login 登录组件
   - Login.vue
+- Shop 商家详情
+  - ShopMenu
+    - ShopMenu.vue 商家菜单
+  - ShopInfo
+    - ShopInfo.vue 商家详情
+  - ShopRatings
+    - ShopRatings.vue 商家评价
+  - Shop.vue 商家页面
   

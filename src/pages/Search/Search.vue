@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-06 22:16:04
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 19:06:09
+ * LastEditTime:2021-11-10 22:37:58
 -->
 <template>
   <div class="search">
@@ -65,9 +65,6 @@ export default {
       });
     });
   },
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
   // 仅在keep-alive下有效
   activated() {},
   deactivated() {},

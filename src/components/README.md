@@ -1,25 +1,37 @@
 # components 非路由组件文件夹，存放公共组件
 
-- FooterGuide 底部组件文件夹
+- FooterGuide
   - FooterGuide.vue 底部组件
-- HeaderTop 顶部导航文件夹
-  - HeaderTop.vue 顶部导航组件
-- Nav 顶部导航文件夹
-  - images 图片文件夹
+- HeaderTop
+  - HeaderTop.vue 头部组件
+- Nav
+  - images
     - nav
     - msite_back.svg 没有数据时占位图片
-  - Nav.vue 顶部导航组件
-- ShopList 顶部导航文件夹
-  - images 图片文件夹
+  - Nav.vue 食品分类栏组件
+- ShopList
+  - images
     - shop_back.svg 占位图片
-  - ShopList.vue 顶部导航组件
-- Login 登录组件
+  - ShopList.vue 商家列表
+- Login
   - LoginMessage
     - LoginMessage.vue 短信登录
   - LoginPwd
     - LoginPwd.vue 密码登录
   - Login.styl 登录组件公用样式
 - Star
-  - images 图片文件夹
+  - images
     - stars
   - Star.vue 评价中的星星的组件
+- ShopMenu
+  - Components 菜单的子组件
+    - Food.vue 菜品特写
+    - ShopCart.vue 购物车
+    - CartControl.vue 菜品的加减按钮
+  - ShopMenu.vue 商家菜单组件
+- ShopInfo
+  - ShopInfo.vue 商家信息组件
+- ShopRatings
+  - ShopRatings.vue 商家评价组件
+- ShopHeader
+  - ShopHeader.vue 商家页面，头部组件

@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-08 22:57:38
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 19:48:26
+ * LastEditTime:2021-11-11 12:10:00
 -->
 <template>
   <div>
@@ -32,8 +32,6 @@ import axios from 'axios';
 
 export default {
   name: 'LoginPwd',
-  // 父组件传入的数据
-  props: {},
   // 组件状态值
   data() {
     return {
@@ -43,8 +41,6 @@ export default {
       captcha: '', // 预留验证码
     };
   },
-  // 计算属性
-  computed: {},
   // 组件方法
   methods: {
     // 刷新验证码

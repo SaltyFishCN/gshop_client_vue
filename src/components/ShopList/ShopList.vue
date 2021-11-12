@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-08 00:36:10
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 16:58:05
+ * LastEditTime:2021-11-10 23:51:24
 -->
 <template>
   <div class="shop_list_container">
@@ -14,7 +14,7 @@
     <div class="shop_container">
       <ul class="shop_list" v-if="isShowList">
         <li class="shop_li border-1px" v-for="shop in shoplist" :key="shop.id">
-          <a>
+          <router-link :to="`/shop/${shop.id}`">
             <div class="shop_left">
               <img class="shop_img" :src="baseImgUrl + shop.image_path">
             </div>
@@ -53,7 +53,7 @@
                 </p>
               </section>
             </div>
-          </a>
+          </router-link>
         </li>
       </ul>
       <ul v-else>
@@ -93,17 +93,6 @@ export default {
       return this.shoplist.length;
     },
   },
-  // 组件方法
-  methods: {},
-  // 生命周期钩子，没用的可以删除
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  // 仅在keep-alive下有效
-  activated() {},
-  deactivated() {},
 };
 </script>
 

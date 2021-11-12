@@ -3,17 +3,20 @@
  * Author:LinJ
  * Date:2021-11-10 11:45:27
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 21:52:37
+ * LastEditTime:2021-11-11 12:33:33
  */
 
 import {
   reqAddress,
   reqFoodCategorys,
   reqShops,
+  reqSearchShop,
   // reqRestaurantInfo,
   // reqMenuList,
   // reqRestaurantRating,
-  reqSearchShop,
+  // reqRestaurantInfo_mock,
+  // reqRestaurantRating_mock,
+  // reqMenuList_mock,
 } from 'api/index';
 import {
   RECEIVE_COORDS,
@@ -22,10 +25,10 @@ import {
   RECEIVE_SHOPS,
   RECEIVE_USER_INFO,
   RESET_USER_INFO,
+  RECEIVE_SEARCH_SHOPS,
   // RECEIVE_SHOP_INFO,
   // RECEIVE_MENU,
   // RECEIVE_RATINGS,
-  RECEIVE_SEARCH_SHOPS,
 } from './mutation-types';
 
 export default {
@@ -60,6 +63,32 @@ export default {
     const searchShops = await reqSearchShop(geohash, keyword);
     commit(RECEIVE_SEARCH_SHOPS, { searchShops });
   },
+  /*
+  // 异步获取商家信息
+  async getShopInfo({ commit }, id) {
+    const res = await reqRestaurantInfo_mock(id);
+    if (res.code === 0) {
+      const shopInfo = res.data;
+      commit(RECEIVE_SHOP_INFO, { shopInfo });
+    }
+  },
+  // 异步获取商家菜单
+  async getShopMenu({ commit }, id) {
+    const res = await reqMenuList_mock(id);
+    if (res.code === 0) {
+      const menu = res.data;
+      commit(RECEIVE_MENU, { menu });
+    }
+  },
+  // 异步获取商家评价
+  async getShopRating({ commit }, id) {
+    const res = await reqRestaurantRating_mock(id);
+    if (res.code === 0) {
+      const ratings = res.data;
+      commit(RECEIVE_RATINGS, { ratings });
+    }
+  },
+  */
   // 记录用户信息
   saveUserInfo({ commit }, userInfo) {
     commit(RECEIVE_USER_INFO, { userInfo });

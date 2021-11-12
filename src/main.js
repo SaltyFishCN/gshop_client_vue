@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-06 14:03:12
  * LastEditors:LinJ
- * LastEditTime:2021-11-07 23:00:03
+ * LastEditTime:2021-11-10 22:27:05
 */
 
 // 引入插件
@@ -14,6 +14,8 @@ import fastClick from 'fastclick';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+// 加载mockServer
+import './mock/mockServer';
 // 引入全局样式文件
 import './common/css/reset.css';
 

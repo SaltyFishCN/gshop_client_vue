@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-08 19:34:47
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 20:23:47
+ * LastEditTime:2021-11-11 12:11:47
 -->
 
 <template>
@@ -55,20 +55,18 @@
 <script>
 import Vue from 'vue';
 import { Dialog, Button } from 'element-ui';
-import LoginMessage from 'components/Login/LoginMessage/LoginMessage.vue';
-import LoginPwd from 'components/Login/LoginPwd/LoginPwd.vue';
+// import LoginMessage from 'components/Login/LoginMessage/LoginMessage.vue';
+// import LoginPwd from 'components/Login/LoginPwd/LoginPwd.vue';
 
 Vue.use(Dialog);
 Vue.use(Button);
 
 export default {
   name: 'login',
-  // 父组件传入的数据
-  props: {},
   // 子组件
   components: {
-    LoginMessage,
-    LoginPwd,
+    LoginMessage: import('components/Login/LoginMessage/LoginMessage.vue'),
+    LoginPwd: import('components/Login/LoginPwd/LoginPwd.vue'),
   },
   // 组件状态值
   data() {
