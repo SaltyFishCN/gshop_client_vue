@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 22:12:12
  * LastEditors:LinJ
- * LastEditTime:2021-11-11 14:48:42
+ * LastEditTime:2021-11-21 23:07:21
  */
 /**
  * Mock.mock( rurl, template )
@@ -17,9 +17,11 @@
 import Mock from 'mockjs';
 import data from './data.json';
 
+// 返回data的接口
+Mock.mock(/\/data\/\d+$/gmi, { code: 0, data });
 // 返回info的接口
-Mock.mock(/\/info\/\d+$/gmi, { code: 0, data: data.info });
+Mock.mock(/\/data\/info\/\d+$/gmi, { code: 0, data: data.info });
 // 返回goods的接口
-Mock.mock(/\/goods\/\d+$/gmi, { code: 0, data: data.goods });
+Mock.mock(/\/data\/goods\/\d+$/gmi, { code: 0, data: data.goods });
 // 返回ratings的接口
-Mock.mock(/\/ratings\/\d+$/gmi, { code: 0, data: data.ratings });
+Mock.mock(/\/data\/ratings\/\d+$/gmi, { code: 0, data: data.ratings });

@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 11:45:27
  * LastEditors:LinJ
- * LastEditTime:2021-11-11 12:33:33
+ * LastEditTime:2021-11-22 00:46:16
  */
 
 import {
@@ -26,6 +26,8 @@ import {
   RECEIVE_USER_INFO,
   RESET_USER_INFO,
   RECEIVE_SEARCH_SHOPS,
+  INCREMENT_FOOD_COUNT,
+  DECREMENT_FOOD_COUNT,
   // RECEIVE_SHOP_INFO,
   // RECEIVE_MENU,
   // RECEIVE_RATINGS,
@@ -62,6 +64,16 @@ export default {
     const { geohash } = state.address;
     const searchShops = await reqSearchShop(geohash, keyword);
     commit(RECEIVE_SEARCH_SHOPS, { searchShops });
+  },
+  // 更新商品数量
+  updateFoodCount({ commit }, { isAdd, id, food }) {
+    if (isAdd) {
+      // 增加
+      commit(INCREMENT_FOOD_COUNT, { id, food });
+    } else {
+      // 减少
+      commit(DECREMENT_FOOD_COUNT, { id, food });
+    }
   },
   /*
   // 异步获取商家信息

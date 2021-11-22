@@ -1,13 +1,20 @@
 <!--
- * Description:
+ * Description: 菜单中的加减按钮
  * Author:LinJ
  * Date:2021-11-11 23:59:13
  * LastEditors:LinJ
- * LastEditTime:2021-11-11 23:59:13
+ * LastEditTime:2021-11-22 02:02:35
 -->
 <template>
-  <div>
-    CartControl
+  <div class="cartcontrol">
+    <transition name="move">
+      <div
+      class="iconfont icon-remove_circle_outline"
+      v-if="food.count"
+      @click.stop="updateFoodCount(false)"></div>
+    </transition>
+    <div class="cart-count" v-if="food.count">{{food.count}}</div>
+    <div class="iconfont icon-add_circle" @click.stop="updateFoodCount(true)"></div>
   </div>
 </template>
 
@@ -15,29 +22,53 @@
 export default {
   name: 'CartControl',
   // 父组件传入的数据
-  props: {},
-  // 局部注册的组件
-  components: {},
-  // 组件状态值
-  data() {
-    return {};
+  props: {
+    food: Object,
+    id: [String, Number],
   },
-  // 计算属性
-  computed: {},
   // 组件方法
-  methods: {},
-  // 生命周期钩子，没用的可以删除
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  // 仅在keep-alive下有效
-  activated() {},
-  deactivated() {},
+  methods: {
+    updateFoodCount(isAdd) {
+      this.$store.dispatch('updateFoodCount', { isAdd, id: this.id, food: this.food });
+    },
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-
+@import '~stylus/mixins.styl';
+.cartcontrol
+  font-size: 0
+  .cart-decrease
+    display: inline-block
+    padding: .375rem
+    line-height: 1.5rem
+    font-size: 1.5rem
+    color: rgb(0, 160, 220)
+  .icon-remove_circle_outline
+    display: inline-block
+    padding .375rem
+    line-height 1.5rem
+    font-size 1.5rem
+    color $green
+    &.move-enter-active, &.move-leave-active
+      transition all .3s
+    &.move-enter, &.move-leave-to
+      opacity 0
+      transform translateX(.9375rem) rotate(180deg)
+  .cart-count
+    display: inline-block
+    vertical-align: top
+    width: .75rem
+    padding-top: .375rem
+    line-height: 1.5rem
+    text-align: center
+    font-size: .625rem
+    color: rgb(147, 153, 159)
+  .icon-add_circle
+    display: inline-block
+    padding: .375rem
+    line-height: 1.5rem
+    font-size: 1.5rem
+    color $green
 </style>

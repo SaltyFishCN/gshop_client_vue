@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 22:57:52
  * LastEditors:LinJ
- * LastEditTime:2021-11-13 00:02:46
+ * LastEditTime:2021-11-22 16:36:58
 -->
 <template>
   <div>
@@ -14,7 +14,7 @@
           <li
           class="menu-item"
           :class="{current: index === currentIndex}"
-          v-for="(item,index) in compData"
+          v-for="(item,index) in compData.data"
           :key="index"
           @click="ClickMenuItem(index)">
             <span class="text bottom-border-1px">
@@ -28,7 +28,7 @@
       <div class="foods-wrapper">
         <!-- 嵌套，ul=>li=>ul=>li -->
         <ul ref="foodsUl">
-          <li class="food-list-hook" v-for="(menu, index) in compData" :key="index">
+          <li class="food-list-hook" v-for="(menu, index) in compData.data" :key="index">
             <h1 class="title">{{menu.name}}</h1>
             <ul>
               <li class="food-item bottom-border-1px" v-for="(food, index) in menu.foods"
@@ -47,10 +47,10 @@
                     <span class="now">￥{{food.price}}</span>
                     <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
                   </div>
-                  <!-- <div class="cartcontrol-wrapper"> -->
+                  <div class="cartcontrol-wrapper">
                     <!-- 数量控制 -->
-                    <!-- <CartControl :food="food"/> -->
-                  <!-- </div> -->
+                    <CartControl :food="food" :id="compData.id" />
+                  </div>
                 </div>
               </li>
             </ul>
@@ -66,7 +66,7 @@
 
 <script>
 import BScroll from 'better-scroll';
-// import CartControl from './Components/CartControl.vue';
+import CartControl from './Components/CartControl.vue';
 // import ShopCart from './Components/ShopCart.vue';
 // import Food from './Components/Food.vue';
 
@@ -74,11 +74,11 @@ export default {
   name: 'ShopMenu',
   // 父组件传入的数据
   props: {
-    compData: Array,
+    compData: Object,
   },
   // 局部注册的组件
   components: {
-    // CartControl,
+    CartControl,
     // ShopCart,
     // Food,
   },

@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-09 21:40:42
  * LastEditors:LinJ
- * LastEditTime:2021-11-11 00:28:54
+ * LastEditTime:2021-11-21 23:06:18
  */
 
 import ajax from './ajax';
@@ -26,9 +26,11 @@ export const reqRestaurantRating = (id) => ajax(`${BASE_URL}/ugc/v2/restaurants/
 export const reqMenuList = (restaurant_id) => ajax(`${BASE_URL}/shopping/v2/menu`, { restaurant_id });
 
 /** mockjs 模拟接口 */
-// 8. 获取商家信息
-export const reqRestaurantInfo_mock = (id) => ajax(`/info/${id}`);
-// 9. 获取商家评价数组
-export const reqRestaurantRating_mock = (id) => ajax(`/ratings/${id}`);
-// 10. 获取商家商品数组
-export const reqMenuList_mock = (id) => ajax(`/goods/${id}`);
+// 8. 根据id获取商家数据，包含商家详情，评价以及菜单
+export const reqRestaurantData_mock = (id) => ajax(`/data/${id}`);
+// 9. 获取商家信息
+export const reqRestaurantInfo_mock = (id) => ajax(`/data/info/${id}`);
+// 10. 获取商家评价数组
+export const reqRestaurantRating_mock = (id) => ajax(`/data/ratings/${id}`);
+// 11. 获取商家商品数组
+export const reqMenuList_mock = (id) => ajax(`/data/goods/${id}`);

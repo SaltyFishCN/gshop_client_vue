@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 22:57:43
  * LastEditors:LinJ
- * LastEditTime:2021-11-11 20:13:42
+ * LastEditTime:2021-11-22 16:37:03
 -->
 <template>
   <div
@@ -14,7 +14,7 @@
   lock>
     <template v-if="isReady2Show">
       <!-- ShopHeader -->
-      <ShopHeader :shopInfo ="shopData.ShopInfo" />
+      <ShopHeader :shopInfo ="shopData.info" />
       <!-- tab 这里用动态组件来实现 -->
       <ul class="tab">
         <li class="tab-item" @click="changeShownComponent('ShopMenu')">
@@ -42,6 +42,7 @@
 // 从element-ui 引入loading
 import Vue from 'vue';
 import { Loading, Message } from 'element-ui';
+import { mapState } from 'vuex';
 
 // 进入到这里的时候，数据应当全部加载好，所以不采用异步组件
 import ShopHeader from 'components/ShopHeader/ShopHeader.vue';
@@ -49,19 +50,12 @@ import ShopMenu from 'components/ShopMenu/ShopMenu.vue';
 import ShopRatings from 'components/ShopRatings/ShopRatings.vue';
 import ShopInfo from 'components/ShopInfo/ShopInfo.vue';
 import {
-  reqRestaurantInfo_mock,
-  reqRestaurantRating_mock,
-  reqMenuList_mock,
+  reqRestaurantData_mock,
 } from 'api/index';
 
 Vue.use(Loading.directive);
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$message = Message;
-
-const SHOP_INFO_READY = 0x001;
-const SHOP_RATINGS_READY = 0x010;
-const SHOP_MENU_READY = 0x100;
-const SHOP_DATA_ALL_READY = SHOP_INFO_READY + SHOP_RATINGS_READY + SHOP_MENU_READY;
 
 export default {
   name: 'Shop',
@@ -77,32 +71,37 @@ export default {
     return {
       // 要显示的部分，默认为menu
       showcomp: 'ShopMenu',
-      isReady: 0,
       isReady2Show: false,
       timer: null,
-      // 获取到的信息，包含商家信息，菜单以及评价
-      shopData: {},
+      shopId: null,
     };
   },
   // 计算属性
-  computed: {},
+  computed: {
+    // 获取到的信息，包含商家信息，菜单以及评价
+    ...mapState(['shopData']),
+  },
   // 组件方法
   methods: {
     changeShownComponent(compName) {
       this.showcomp = compName;
     },
     retunCompData() {
-      // 动态传递给组件数据，因为默认是menu 所以与[]进行短路
-      return this.shopData[this.showcomp] || [];
+      const dataMap = {
+        ShopMenu: 'menus',
+        ShopRatings: 'ratings',
+        ShopInfo: 'info',
+      };
+      const key = dataMap[this.showcomp];
+      return { id: this.shopData.id, data: this.shopData[key] } || {};
     },
   },
   watch: {
-    isReady(newVal) {
-      if (newVal === SHOP_DATA_ALL_READY) {
+    isReady2Show(newVal) {
+      if (newVal === true) {
         // 数据准备 ok
         console.log('this page is ready to show');
         // 开启页面显示
-        this.isReady2Show = true;
         clearTimeout(this.timer);
       }
     },
@@ -110,9 +109,10 @@ export default {
   // 生命周期钩子，没用的可以删除
   mounted() {
     const { id } = this.$route.params;
+    this.shopId = id;
     // 根据id获取数据，应该设置一个超时机制，超时没完成则返回上一个页面
     this.timer = setTimeout(() => {
-      if (this.isReady !== SHOP_DATA_ALL_READY) {
+      if (this.isReady !== true) {
         // 数据还没准备好,弹窗提示加载失败并返回上一级页面
         this.$message({
           message: '加载失败！',
@@ -123,27 +123,19 @@ export default {
         this.$router.back();
       }
     }, 1000);
-    reqRestaurantInfo_mock(id).then((res) => {
+    // 根据商家id来异步获取详情数据
+    reqRestaurantData_mock(id).then((res) => {
       if (res.code === 0) {
-        // 获取到数据
-        this.shopData.ShopInfo = res.data;
-        this.isReady += SHOP_INFO_READY;
+        // 获取到数据存储到vuex中
+        this.$store.commit('reveive_shop_date', { id, shopData: res.data });
+        // 将标志位置为true，可以开始显示
+        this.isReady2Show = true;
       }
     });
-    reqRestaurantRating_mock(id).then((res) => {
-      if (res.code === 0) {
-        // 获取到数据
-        this.shopData.ShopRatings = res.data;
-        this.isReady += SHOP_RATINGS_READY;
-      }
-    });
-    reqMenuList_mock(id).then((res) => {
-      if (res.code === 0) {
-        // 获取到数据
-        this.shopData.ShopMenu = res.data;
-        this.isReady += SHOP_MENU_READY;
-      }
-    });
+  },
+  beforeDestroy() {
+    // 清空购物车数据
+    this.$store.commit('clear_cart', { id: this.shopId });
   },
 };
 </script>
