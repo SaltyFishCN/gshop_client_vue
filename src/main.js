@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-06 14:03:12
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 22:27:05
+ * LastEditTime:2021-11-24 00:24:22
 */
 
 // 引入插件
@@ -14,6 +14,8 @@ import fastClick from 'fastclick';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+// 加载过滤器
+import './filters/index';
 // 加载mockServer
 import './mock/mockServer';
 // 引入全局样式文件

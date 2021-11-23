@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-11 23:59:06
  * LastEditors:LinJ
- * LastEditTime:2021-11-23 01:08:21
+ * LastEditTime:2021-11-23 20:54:08
 -->
 <template>
 <div>
@@ -129,7 +129,9 @@ export default {
     },
   },
   updated() {
-    this.scroll.refresh();
+    if (this.scroll) {
+      this.scroll.refresh();
+    }
   },
 };
 </script>

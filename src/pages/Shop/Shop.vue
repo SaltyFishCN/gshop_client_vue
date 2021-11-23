@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 22:57:43
  * LastEditors:LinJ
- * LastEditTime:2021-11-22 23:04:22
+ * LastEditTime:2021-11-23 23:29:07
 -->
 <template>
   <div
@@ -31,7 +31,6 @@
       <keep-alive>
         <component
         :is="showcomp"
-        :compData="retunCompData()"
         />
       </keep-alive>
     </template>
@@ -85,15 +84,6 @@ export default {
   methods: {
     changeShownComponent(compName) {
       this.showcomp = compName;
-    },
-    retunCompData() {
-      const dataMap = {
-        ShopMenu: 'menus',
-        ShopRatings: 'ratings',
-        ShopInfo: 'info',
-      };
-      const key = dataMap[this.showcomp];
-      return { id: this.shopData.id, data: this.shopData[key] } || {};
     },
   },
   watch: {

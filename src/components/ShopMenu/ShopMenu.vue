@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 22:57:52
  * LastEditors:LinJ
- * LastEditTime:2021-11-22 22:59:26
+ * LastEditTime:2021-11-23 22:54:50
 -->
 <template>
   <div>
@@ -14,7 +14,7 @@
           <li
           class="menu-item"
           :class="{current: index === currentIndex}"
-          v-for="(item,index) in compData.data"
+          v-for="(item,index) in menus"
           :key="index"
           @click="ClickMenuItem(index)">
             <span class="text bottom-border-1px">
@@ -28,7 +28,7 @@
       <div class="foods-wrapper">
         <!-- 嵌套，ul=>li=>ul=>li -->
         <ul ref="foodsUl">
-          <li class="food-list-hook" v-for="(menu, index) in compData.data" :key="index">
+          <li class="food-list-hook" v-for="(menu, index) in menus" :key="index">
             <h1 class="title">{{menu.name}}</h1>
             <ul>
               <li class="food-item bottom-border-1px" v-for="(food, index) in menu.foods"
@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import BScroll from 'better-scroll';
 import CartControl from './Components/CartControl.vue';
 import ShopCart from './Components/ShopCart.vue';
@@ -95,6 +96,10 @@ export default {
   },
   // 计算属性
   computed: {
+    ...mapState(['shopData']),
+    menus() {
+      return this.shopData.menus;
+    },
     currentIndex() {
       // 根据当前的滚动位置求出index值
       const { scrollTops, currentY } = this;
@@ -170,9 +175,6 @@ export default {
     this.menuScroll.refresh();
     this.foodsScroll.refresh();
   },
-  // 仅在keep-alive下有效
-  activated() {},
-  deactivated() {},
 };
 </script>
 
