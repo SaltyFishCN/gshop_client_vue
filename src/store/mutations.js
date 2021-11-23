@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 11:41:01
  * LastEditors:LinJ
- * LastEditTime:2021-11-22 02:18:59
+ * LastEditTime:2021-11-22 23:03:49
  */
 import Vue from 'vue';
 import {
@@ -35,34 +35,30 @@ export default {
   [RESET_USER_INFO](state) { state.userInfo = {}; },
   [RECEIVE_SHOP_DATA](state, { id, shopData }) { state.shopData = { id, ...shopData }; },
   [RECEIVE_SEARCH_SHOPS](state, { searchShops }) { state.searchShops = searchShops; },
-  [INCREMENT_FOOD_COUNT](state, { id, food }) {
-    // 先根据id找到商家, 没有就新建一个
-    if (!state.cartFoods[id]) {
-      state.cartFoods[id] = [];
-    }
-    // 在对应的商家购物篮中找对应的商品，没有则表示是新点击的商品
-    const findIndex = state.cartFoods[id].findIndex((cardfood) => cardfood.name === food.name);
-    if (findIndex === -1) {
+  [INCREMENT_FOOD_COUNT](state, { food }) {
+    if (!food.count) {
       // 新增菜品
       Vue.set(food, 'count', 1); // 让新增的属性也有数据绑定, 触发响应式更新
       // 将food添加到cartFoods中
-      state.cartFoods[id].push(food);
+      state.cartFoods.push(food);
     } else {
-      state.cartFoods[id][findIndex].count += 1;
+      food.count += 1;
     }
   },
-  [DECREMENT_FOOD_COUNT](state, { id, food }) {
-    // 先根据id找到对应商家，再根据food.name找到商家下对应的菜品
-    const findIndex = state.cartFoods[id].findIndex((cardfood) => cardfood.name === food.name);
-    if (findIndex !== -1) {
-      state.cartFoods[id][findIndex].count -= 1;
-      if (state.cartFoods[id][findIndex].count === 0) {
-        state.cartFoods[id].splice(findIndex, 1);
+  [DECREMENT_FOOD_COUNT](state, { food }) {
+    if (food.count) {
+      food.count -= 1;
+      if (food.count === 0) {
+        // 从cardFoods中摘除food
+        state.cartFoods.splice(state.cartFoods.indexOf(food), 1);
       }
     }
   },
-  [CLEAR_CART](state, { id }) {
-    delete state.cartFoods[id];
+  [CLEAR_CART](state) {
+    // 清空各菜品的数量
+    state.cartFoods.forEach((food) => { food.count = 0; });
+    // 清空购物车
+    state.cartFoods = [];
   },
   // [RECEIVE_SHOP_INFO](state, { shopInfo }) { state.shopInfo = shopInfo; },
   // [RECEIVE_MENU](state, { menu }) { state.menu = menu; },

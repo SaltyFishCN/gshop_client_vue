@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 22:57:52
  * LastEditors:LinJ
- * LastEditTime:2021-11-22 16:36:58
+ * LastEditTime:2021-11-22 22:59:26
 -->
 <template>
   <div>
@@ -32,7 +32,7 @@
             <h1 class="title">{{menu.name}}</h1>
             <ul>
               <li class="food-item bottom-border-1px" v-for="(food, index) in menu.foods"
-                  :key="index">
+                  :key="index" @click="showFood(food)">
                 <div class="icon">
                   <img width="57" height="57" :src="food.icon">
                 </div>
@@ -49,7 +49,7 @@
                   </div>
                   <div class="cartcontrol-wrapper">
                     <!-- 数量控制 -->
-                    <CartControl :food="food" :id="compData.id" />
+                    <CartControl :food="food" />
                   </div>
                 </div>
               </li>
@@ -58,17 +58,17 @@
         </ul>
       </div>
       <!-- 购物车组件 -->
-      <!-- <ShopCart /> -->
+      <ShopCart />
     </div>
-    <!-- <Food /> -->
+    <Food :food="food" ref="food" />
   </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll';
 import CartControl from './Components/CartControl.vue';
-// import ShopCart from './Components/ShopCart.vue';
-// import Food from './Components/Food.vue';
+import ShopCart from './Components/ShopCart.vue';
+import Food from './Components/Food.vue';
 
 export default {
   name: 'ShopMenu',
@@ -79,8 +79,8 @@ export default {
   // 局部注册的组件
   components: {
     CartControl,
-    // ShopCart,
-    // Food,
+    ShopCart,
+    Food,
   },
   // 组件状态值
   data() {
@@ -89,6 +89,8 @@ export default {
       currentY: 0,
       // 记录左侧分类在右侧对应的滚动位置
       scrollTops: [],
+      // 需要显示的食物
+      food: {},
     };
   },
   // 计算属性
@@ -150,6 +152,11 @@ export default {
       // 更新当前滚动距离
       this.currentY = curY;
       this.foodsScroll.scrollTo(0, -curY, 300);
+    },
+    showFood(food) {
+      this.food = food;
+      // 调用子组件方法，切换显示状态
+      this.$refs.food.toggleShow();
     },
   },
   // 生命周期钩子

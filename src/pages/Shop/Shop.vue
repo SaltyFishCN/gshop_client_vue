@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 22:57:43
  * LastEditors:LinJ
- * LastEditTime:2021-11-22 16:37:03
+ * LastEditTime:2021-11-22 23:04:22
 -->
 <template>
   <div
@@ -135,7 +135,7 @@ export default {
   },
   beforeDestroy() {
     // 清空购物车数据
-    this.$store.commit('clear_cart', { id: this.shopId });
+    this.$store.commit('clear_cart');
   },
 };
 </script>

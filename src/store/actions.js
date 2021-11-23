@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 11:45:27
  * LastEditors:LinJ
- * LastEditTime:2021-11-22 00:46:16
+ * LastEditTime:2021-11-22 22:59:53
  */
 
 import {
@@ -66,13 +66,13 @@ export default {
     commit(RECEIVE_SEARCH_SHOPS, { searchShops });
   },
   // 更新商品数量
-  updateFoodCount({ commit }, { isAdd, id, food }) {
+  updateFoodCount({ commit }, { isAdd, food }) {
     if (isAdd) {
       // 增加
-      commit(INCREMENT_FOOD_COUNT, { id, food });
+      commit(INCREMENT_FOOD_COUNT, { food });
     } else {
       // 减少
-      commit(DECREMENT_FOOD_COUNT, { id, food });
+      commit(DECREMENT_FOOD_COUNT, { food });
     }
   },
   /*

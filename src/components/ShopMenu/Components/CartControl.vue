@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-11 23:59:13
  * LastEditors:LinJ
- * LastEditTime:2021-11-22 02:02:35
+ * LastEditTime:2021-11-22 22:58:44
 -->
 <template>
   <div class="cartcontrol">
@@ -24,12 +24,11 @@ export default {
   // 父组件传入的数据
   props: {
     food: Object,
-    id: [String, Number],
   },
   // 组件方法
   methods: {
     updateFoodCount(isAdd) {
-      this.$store.dispatch('updateFoodCount', { isAdd, id: this.id, food: this.food });
+      this.$store.dispatch('updateFoodCount', { isAdd, food: this.food });
     },
   },
 };

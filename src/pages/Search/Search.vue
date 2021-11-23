@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-06 22:16:04
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 22:37:58
+ * LastEditTime:2021-11-22 17:38:36
 -->
 <template>
   <div class="search">
@@ -25,7 +25,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import BScroll from 'better-scroll';
+// import BScroll from 'better-scroll';
 
 import HeaderTop from 'components/HeaderTop/HeaderTop.vue';
 
@@ -59,11 +59,11 @@ export default {
   },
   // 生命周期钩子，没用的可以删除
   mounted() {
-    this.$nextTick(() => {
-      this.scroll = new BScroll('.search_res_wrapper', {
-        click: true,
-      });
-    });
+    // this.$nextTick(() => {
+    //   this.scroll = new BScroll('.search_res_wrapper', {
+    //     click: true,
+    //   });
+    // });
   },
   // 仅在keep-alive下有效
   activated() {},
