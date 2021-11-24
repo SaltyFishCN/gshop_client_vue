@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 22:57:52
  * LastEditors:LinJ
- * LastEditTime:2021-11-23 22:54:50
+ * LastEditTime:2021-11-24 15:09:53
 -->
 <template>
   <div>
@@ -34,7 +34,7 @@
               <li class="food-item bottom-border-1px" v-for="(food, index) in menu.foods"
                   :key="index" @click="showFood(food)">
                 <div class="icon">
-                  <img width="57" height="57" :src="food.icon">
+                  <img width="57" height="57" v-lazy="food.icon">
                 </div>
                 <div class="content">
                   <h2 class="name">{{food.name}}</h2>

@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-06 22:16:26
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 21:10:34
+ * LastEditTime:2021-11-24 16:10:25
 -->
 
 <template>
@@ -152,13 +152,12 @@ export default {
       }).then(() => {
         // 通知vuex进行登出
         this.$store.dispatch('logout');
-        console.log('log out');
         this.$message({
           type: 'success',
           message: '登出成功!',
         });
       }).catch(() => {
-        console.log('cancel');
+        // console.log('cancel');
       });
     },
   },

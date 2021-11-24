@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 22:57:43
  * LastEditors:LinJ
- * LastEditTime:2021-11-23 23:29:07
+ * LastEditTime:2021-11-24 14:59:04
 -->
 <template>
   <div
@@ -45,12 +45,17 @@ import { mapState } from 'vuex';
 
 // 进入到这里的时候，数据应当全部加载好，所以不采用异步组件
 import ShopHeader from 'components/ShopHeader/ShopHeader.vue';
-import ShopMenu from 'components/ShopMenu/ShopMenu.vue';
-import ShopRatings from 'components/ShopRatings/ShopRatings.vue';
-import ShopInfo from 'components/ShopInfo/ShopInfo.vue';
+// import ShopMenu from 'components/ShopMenu/ShopMenu.vue';
+// import ShopRatings from 'components/ShopRatings/ShopRatings.vue';
+// import ShopInfo from 'components/ShopInfo/ShopInfo.vue';
+
 import {
   reqRestaurantData_mock,
 } from 'api/index';
+
+const ShopMenu = () => import('components/ShopMenu/ShopMenu.vue');
+const ShopRatings = () => import('components/ShopRatings/ShopRatings.vue');
+const ShopInfo = () => import('components/ShopInfo/ShopInfo.vue');
 
 Vue.use(Loading.directive);
 Vue.prototype.$loading = Loading.service;
@@ -90,7 +95,7 @@ export default {
     isReady2Show(newVal) {
       if (newVal === true) {
         // 数据准备 ok
-        console.log('this page is ready to show');
+        // console.log('this page is ready to show');
         // 开启页面显示
         clearTimeout(this.timer);
       }

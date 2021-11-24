@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-08 19:34:47
  * LastEditors:LinJ
- * LastEditTime:2021-11-24 00:50:07
+ * LastEditTime:2021-11-24 16:10:09
 -->
 <template>
   <section class="loginContainer">
@@ -54,8 +54,8 @@
 <script>
 import Vue from 'vue';
 import { Dialog, Button } from 'element-ui';
-import LoginMessage from 'components/Login/LoginMessage/LoginMessage.vue';
-import LoginPwd from 'components/Login/LoginPwd/LoginPwd.vue';
+// import LoginMessage from 'components/Login/LoginMessage/LoginMessage.vue';
+// import LoginPwd from 'components/Login/LoginPwd/LoginPwd.vue';
 
 Vue.use(Dialog);
 Vue.use(Button);
@@ -64,10 +64,10 @@ export default {
   name: 'login',
   // 子组件
   components: {
-    // LoginMessage: import('components/Login/LoginMessage/LoginMessage.vue'),
-    // LoginPwd: import('components/Login/LoginPwd/LoginPwd.vue'),
-    LoginMessage,
-    LoginPwd,
+    LoginMessage: () => import('components/Login/LoginMessage/LoginMessage.vue'),
+    LoginPwd: () => import('components/Login/LoginPwd/LoginPwd.vue'),
+    // LoginMessage,
+    // LoginPwd,
   },
   // 组件状态值
   data() {
@@ -167,7 +167,7 @@ export default {
         this.$router.replace('/profile');
       } else {
         // 登录失败
-        console.log('login failed');
+        // console.log('login failed');
         // 显示错误提醒
         this.showDialog('总之登录失败！');
         // 清空数据

@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-08 00:36:10
  * LastEditors:LinJ
- * LastEditTime:2021-11-10 23:51:24
+ * LastEditTime:2021-11-24 15:10:30
 -->
 <template>
   <div class="shop_list_container">
@@ -16,7 +16,7 @@
         <li class="shop_li border-1px" v-for="shop in shoplist" :key="shop.id">
           <router-link :to="`/shop/${shop.id}`">
             <div class="shop_left">
-              <img class="shop_img" :src="baseImgUrl + shop.image_path">
+              <img class="shop_img" v-lazy="baseImgUrl + shop.image_path">
             </div>
             <div class="shop_right">
               <section class="shop_detail_header">

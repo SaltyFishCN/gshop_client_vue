@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-06 22:16:04
  * LastEditors:LinJ
- * LastEditTime:2021-11-24 02:05:34
+ * LastEditTime:2021-11-24 15:10:11
 -->
 <template>
   <div class="search">
@@ -22,7 +22,7 @@
         <li v-for="item in searchShops" :key="item.id">
           <router-link :to="`/shop/${item.id}`" class="list_li">
             <section class="item_left">
-              <img :src="imgBaseUrl + item.image_path" class="restaurant_img">
+              <img v-lazy="imgBaseUrl + item.image_path" class="restaurant_img">
             </section>
             <section class="item_right">
               <div class="item_right_text">
@@ -98,7 +98,7 @@ export default {
     }
   },
   beforeDestroy() {
-    console.log('beforeDestroy');
+    // console.log('beforeDestroy');
     this.clearSearchShops();
   },
 };

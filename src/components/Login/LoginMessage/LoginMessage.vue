@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-08 22:57:33
  * LastEditors:LinJ
- * LastEditTime:2021-11-11 12:10:20
+ * LastEditTime:2021-11-24 16:11:04
 -->
 <template>
   <div>
@@ -59,8 +59,8 @@ export default {
         }, 1000);
 
         // 接口。向指定手机号码发送验证码短信
-        const result = await Promise.resolve(123456);
-        console.log(result);
+        // const result = await Promise.resolve(123456);
+        // console.log(result);
       }
     },
     reset() {
