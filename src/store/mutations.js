@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 11:41:01
  * LastEditors:LinJ
- * LastEditTime:2021-11-23 22:34:07
+ * LastEditTime:2021-11-24 01:55:57
  */
 import Vue from 'vue';
 import {
@@ -15,6 +15,7 @@ import {
   RECEIVE_SHOP_DATA,
   RESET_USER_INFO,
   RECEIVE_SEARCH_SHOPS,
+  CLEAR_SEARCH_SHOPS,
   INCREMENT_FOOD_COUNT,
   DECREMENT_FOOD_COUNT,
   CLEAR_CART,
@@ -35,6 +36,7 @@ export default {
   [RESET_USER_INFO](state) { state.userInfo = {}; },
   [RECEIVE_SHOP_DATA](state, { id, shopData }) { state.shopData = { id, ...shopData }; },
   [RECEIVE_SEARCH_SHOPS](state, { searchShops }) { state.searchShops = searchShops; },
+  [CLEAR_SEARCH_SHOPS](state) { state.searchShops = []; },
   [INCREMENT_FOOD_COUNT](state, { food }) {
     if (!food.count) {
       // 新增菜品

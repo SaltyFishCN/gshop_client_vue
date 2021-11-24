@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-07 00:08:38
  * LastEditors:LinJ
- * LastEditTime:2021-11-12 19:56:25
+ * LastEditTime:2021-11-24 01:10:51
  */
 module.exports = {
   root: true,
@@ -26,5 +26,7 @@ module.exports = {
     camelcase: 0,
     'no-param-reassign': 0,
     'no-underscore-dangle': 0,
+    // 最大长度
+    'max-len': ['error', {'code': 120}],
   },
 };

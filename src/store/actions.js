@@ -3,7 +3,7 @@
  * Author:LinJ
  * Date:2021-11-10 11:45:27
  * LastEditors:LinJ
- * LastEditTime:2021-11-23 22:34:19
+ * LastEditTime:2021-11-24 01:55:08
  */
 
 import {
@@ -28,6 +28,7 @@ import {
   RECEIVE_SEARCH_SHOPS,
   INCREMENT_FOOD_COUNT,
   DECREMENT_FOOD_COUNT,
+  CLEAR_SEARCH_SHOPS,
   // RECEIVE_SHOP_INFO,
   // RECEIVE_MENU,
   // RECEIVE_RATINGS,
@@ -63,7 +64,12 @@ export default {
   async getSearchShops({ commit, state }, keyword) {
     const { geohash } = state.address;
     const searchShops = await reqSearchShop(geohash, keyword);
+    // 将搜索结果写入state
     commit(RECEIVE_SEARCH_SHOPS, { searchShops });
+  },
+  // 清空搜索列表
+  clearSearchShops({ commit }) {
+    commit(CLEAR_SEARCH_SHOPS);
   },
   // 更新商品数量
   updateFoodCount({ commit }, { isAdd, food }) {

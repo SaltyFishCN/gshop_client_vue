@@ -3,9 +3,8 @@
  * Author:LinJ
  * Date:2021-11-08 19:34:47
  * LastEditors:LinJ
- * LastEditTime:2021-11-11 12:11:47
+ * LastEditTime:2021-11-24 00:50:07
 -->
-
 <template>
   <section class="loginContainer">
     <el-dialog title="警告"
@@ -55,8 +54,8 @@
 <script>
 import Vue from 'vue';
 import { Dialog, Button } from 'element-ui';
-// import LoginMessage from 'components/Login/LoginMessage/LoginMessage.vue';
-// import LoginPwd from 'components/Login/LoginPwd/LoginPwd.vue';
+import LoginMessage from 'components/Login/LoginMessage/LoginMessage.vue';
+import LoginPwd from 'components/Login/LoginPwd/LoginPwd.vue';
 
 Vue.use(Dialog);
 Vue.use(Button);
@@ -65,8 +64,10 @@ export default {
   name: 'login',
   // 子组件
   components: {
-    LoginMessage: import('components/Login/LoginMessage/LoginMessage.vue'),
-    LoginPwd: import('components/Login/LoginPwd/LoginPwd.vue'),
+    // LoginMessage: import('components/Login/LoginMessage/LoginMessage.vue'),
+    // LoginPwd: import('components/Login/LoginPwd/LoginPwd.vue'),
+    LoginMessage,
+    LoginPwd,
   },
   // 组件状态值
   data() {
